@@ -10,61 +10,61 @@
 import stanford.karel.*;
 
 /*
- * Name: Ronnie Andrè Sletta
+ * Name: Ronnie Andrèe Sletta
  * Section Leader: 
  */
 
 public class CheckerboardKarel extends SuperKarel {
 
 	public void run() {
-		//Brukes for å finne ut om en beeper skal plasseres ut eller ei
+		//Used to determine if beeper should be places, or not
 		boolean place=true;
-		// Dersom HØYRE OG VENSTRE er blokkert fra start, må dette være en enkel rad
+		// If both RIGHT and LEFT is blocked from the start, this must be a single row
 		if (leftIsBlocked()&&rightIsBlocked()){
-			// Jeg setter ut beepere helt til jeg komme til enden av raden
+			// I'm placing beepers until the end of the row
 			while (facingEast()){
-				// Skal jeg plassere en beeper her?
+				// Should I put down a beeper here?
 				if (place==true){
 					placeBeeper();
-					// Fortell Karel at det ikke skal plasseres noen beeper på neste punkt
+					// Don't place a beeper on the next spot, Karel!
 					place=!place;
 					moveKarel();
 				} 
 				else {
-					// Jeg plasserte ikke noen beeper på dette punktet, men skal plassere på neste
+					// I didn't place a beeper here, so I'll put one down on the next move.
 					place=!place;
 					moveKarel();
 				}
 			}
 		
 		} else {
-		// Ettersom jeg er her, består verden av flere rader
+		// Since I'm here, I guess the world must have more than one row.
 			while (leftIsClear()){
 				if (rightIsClear()){ 
-					// Skal jeg plassere en beeper her?
+					// Should I put down a beeper here?
 					if (place==true){
 						placeBeeper();
-						// Fortell Karel at det ikke skal plasseres noen beeper på neste punkt
+						// Don't place a beeper on the next spot, Karel!
 						place=!place;
 						moveKarel();
 					} 
 					else {
-						// Jeg plasserte ikke noen beeper på dette punktet, men skal plassere på neste
+						// I didn't place a beeper here, so I'll put one down on the next move.
 						place=!place;
 						moveKarel();
 					}
 				}
 				else
 				{
-					// Skal jeg plassere en beeper her?
+					// Should I put down a beeper here?
 					if (place==true){
 						placeBeeper();
-						// Fortell Karel at det ikke skal plasseres noen beeper på neste punkt
+						// Don't place a beeper on the next spot, Karel!
 						place=!place;
 						moveKarel();
 					} 
 					else {
-						// Jeg plasserte ikke noen beeper på dette punktet, men skal plassere på neste
+						// I didn't place a beeper here, so I'll put one down on the next move.
 						place=!place;
 						moveKarel();
 					}
@@ -73,22 +73,22 @@ public class CheckerboardKarel extends SuperKarel {
 		}
 		
 		checkForTopStreet();
-		turnAround(); // STOPP!!!!!!
+		turnAround(); // STOP!!!!!!
 	}
 
 	
-	//Metode for å flytte Karel såfremt det er klart i front av han
+	//Method for moving Karel, as long as he has a clear path infront of him
 	private void moveKarel(){
 		if (frontIsClear()){
 			move();
 			
 		} else {
-			// Karel har truffet en ende, så han flytter en rad opp
+			// Karel hit the end of the row, so he's moving to the next row above him
 			moveRow();
 		}
 	}
 	
-	//Dersom det skal være en beeper i ruten, og det ikke er det fra før, plasseres en ut
+	//If this square is supossed to have a beeper, and there isn't one here allready, put one down.
 	private void placeBeeper(){
 		if (noBeepersPresent()){
 		putBeeper();
@@ -96,7 +96,7 @@ public class CheckerboardKarel extends SuperKarel {
 
 	}
 	
-	//Metode for å skifte fra en ferdig utfyllt rad, til den neste over
+	//Method for moving from a filled row, to the next one above it.
 	private void moveRow(){
 		if (facingEast()){
 			turnLeft();
@@ -118,21 +118,21 @@ public class CheckerboardKarel extends SuperKarel {
 	}
 
 	private void checkForTopStreet(){
-		//Dersom jeg er i denne funksjonen må jeg ha kommet til den øverse raden som er oddetallsrad
+		//If I'm in this function, I must be one the top row, which is an odd numbered row.
 		if (facingEast()){ 
-			//Brukes for å finne ut om en beeper skal plasseres ut eller ei
+			//Used to determine if beeper should be places, or not
 			boolean place=true;
-			// Da setter jeg igang og fyller denne også
+			// Ok, I'll start filling this to then
 			while (facingEast()){
-				// Skal jeg plassere en beeper her?
+				// Should I put down a beeper here?
 				if (place==true){
 					placeBeeper();
-					// Fortell Karel at det ikke skal plasseres noen beeper på neste punkt
+					// Don't place a beeper on the next spot, Karel!
 					place=!place;
 					moveKarel();
 				} 
 				else {
-					// Jeg plasserte ikke noen beeper på dette punktet, men skal plassere på neste
+					// I didn't place a beeper here, so I'll put one down on the next move.
 					place=!place;
 					moveKarel();
 				}
